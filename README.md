@@ -13,6 +13,7 @@ CPR 교육/응급 대응 안내용 정적 웹사이트입니다.
     └── images
         ├── hero-heart.png
         ├── heartbeat.png
+        ├── protocol-steps.png
         ├── step-01.png
         ├── step-02.png
         ├── step-03.png
