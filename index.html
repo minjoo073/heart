@@ -264,8 +264,8 @@
       </div>
     </footer>
     <script>
+      // Process section reveal animation
       const processSection = document.querySelector("#process");
-
       if (processSection) {
         const observer = new IntersectionObserver(
           (entries) => {
@@ -279,8 +279,37 @@
           },
           { rootMargin: "-18% 0px -18% 0px", threshold: 0.26 }
         );
-
         observer.observe(processSection);
+      }
+
+      // Header theme: dark on hero & pulse sections, light elsewhere
+      const header = document.querySelector(".site-header");
+      const darkSections = document.querySelectorAll(".hero, .pulse, .cta-band");
+
+      if (header && darkSections.length) {
+        const headerObserver = new IntersectionObserver(
+          (entries) => {
+            entries.forEach((entry) => {
+              if (entry.isIntersecting) {
+                header.classList.add("is-dark");
+              } else {
+                // Only remove if no other dark section is intersecting
+                const anyDark = Array.from(darkSections).some((s) =>
+                  s.classList.contains("_in-view")
+                );
+                entry.target.classList.remove("_in-view");
+                if (!document.querySelector(".hero._in-view, .pulse._in-view, .cta-band._in-view")) {
+                  header.classList.remove("is-dark");
+                }
+              }
+              if (entry.isIntersecting) {
+                entry.target.classList.add("_in-view");
+              }
+            });
+          },
+          { threshold: 0.2 }
+        );
+        darkSections.forEach((s) => headerObserver.observe(s));
       }
     </script>
   </body>

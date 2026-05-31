@@ -53,25 +53,47 @@ img {
   justify-content: space-between;
   height: 74px;
   padding: 0 max(var(--gutter), calc((100vw - var(--max)) / 2));
-  color: var(--white);
-  background: rgba(24, 20, 20, 0.94);
-  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  color: var(--ink);
+  background: rgba(245, 241, 236, 0.92);
+  border-bottom: none;
   backdrop-filter: blur(16px);
+  transition: background 0.4s ease, border-color 0.4s ease, color 0.4s ease;
+}
+
+.site-header.is-dark {
+  color: var(--white);
+  background: rgba(18, 16, 16, 0.92);
+  border-bottom: none;
 }
 
 .brand img {
   width: 150px;
   height: auto;
+  filter: drop-shadow(0 0 6px rgba(18, 18, 20, 0.18)) drop-shadow(0 1px 3px rgba(18, 18, 20, 0.12));
+  transition: filter 0.4s ease;
+}
+
+.site-header.is-dark .brand img {
+  filter: none;
 }
 
 .nav {
   display: flex;
   gap: clamp(34px, 4.8vw, 68px);
   font-size: 14px;
-  color: rgba(255, 255, 255, 0.72);
+  color: rgba(18, 18, 20, 0.6);
+  transition: color 0.4s ease;
 }
 
 .nav a:hover {
+  color: var(--ink);
+}
+
+.site-header.is-dark .nav {
+  color: rgba(255, 255, 255, 0.72);
+}
+
+.site-header.is-dark .nav a:hover {
   color: var(--white);
 }
 
