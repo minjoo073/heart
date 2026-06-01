@@ -383,12 +383,43 @@ img {
   padding-top: 0;
   padding-bottom: 0;
   height: calc(100svh - 74px);
-  overflow: hidden;
+  isolation: isolate;
+  overflow: visible;
   scroll-snap-align: start;
 }
 
 .overview::before {
-  content: none;
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: -44px;
+  bottom: -44px;
+  width: 100vw;
+  transform: translateX(-50%);
+  z-index: 0;
+  pointer-events: none;
+  background: url("../images/campaign-message-bg.png") right center / cover no-repeat;
+  opacity: 0.58;
+}
+
+.overview::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: -44px;
+  bottom: -44px;
+  width: 100vw;
+  transform: translateX(-50%);
+  z-index: 1;
+  pointer-events: none;
+  background:
+    linear-gradient(90deg, rgba(250, 247, 244, 1) 0%, rgba(250, 247, 244, 0.94) 32%, rgba(250, 247, 244, 0.58) 62%, rgba(250, 247, 244, 0.18) 100%),
+    linear-gradient(180deg, rgba(250, 247, 244, 0.88) 0%, rgba(250, 247, 244, 0.04) 28%, rgba(250, 247, 244, 0.08) 70%, rgba(250, 247, 244, 0.86) 100%);
+}
+
+.overview > * {
+  position: relative;
+  z-index: 2;
 }
 
 .overview-copy {
@@ -474,7 +505,7 @@ img {
   display: block;
   max-width: 760px;
   color: var(--ink);
-  font-size: clamp(26px, 2.7vw, 42px);
+  font-size: clamp(25px, 2.35vw, 36px);
   font-weight: 700;
   line-height: 1.2;
   letter-spacing: 0;
