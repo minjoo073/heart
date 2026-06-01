@@ -12,13 +12,16 @@
       <a class="brand" href="#top" aria-label="CPR Response Plus home">
         <img src="assets/images/main-logo.png" alt="CPR Response Plus" />
       </a>
-      <nav class="nav" aria-label="주요 메뉴">
+      <nav class="nav" id="site-nav" aria-label="주요 메뉴">
         <a href="#why">CPR 정보</a>
         <a href="#process">대응 순서</a>
         <a href="#change">행동 변화</a>
         <a href="#training">교육 찾기</a>
       </nav>
       <a class="header-cta" href="#training">교육 찾기</a>
+      <button class="nav-toggle" id="nav-toggle" aria-label="메뉴 열기" aria-expanded="false" aria-controls="site-nav">
+        <span></span><span></span><span></span>
+      </button>
     </header>
 
     <main id="top">
@@ -264,6 +267,25 @@
       </div>
     </footer>
     <script>
+      // Mobile nav toggle
+      const navToggle = document.getElementById("nav-toggle");
+      const siteNav = document.getElementById("site-nav");
+      if (navToggle && siteNav) {
+        navToggle.addEventListener("click", () => {
+          const isOpen = navToggle.getAttribute("aria-expanded") === "true";
+          navToggle.setAttribute("aria-expanded", String(!isOpen));
+          navToggle.classList.toggle("is-open", !isOpen);
+          siteNav.classList.toggle("is-open", !isOpen);
+        });
+        siteNav.querySelectorAll("a").forEach((a) => {
+          a.addEventListener("click", () => {
+            navToggle.setAttribute("aria-expanded", "false");
+            navToggle.classList.remove("is-open");
+            siteNav.classList.remove("is-open");
+          });
+        });
+      }
+
       // Process section reveal animation
       const processSection = document.querySelector("#process");
       if (processSection) {
