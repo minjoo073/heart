@@ -11,6 +11,7 @@
   --ghost-light: rgba(255, 255, 255, 0.055);
   --max: 1280px;
   --gutter: clamp(24px, 3vw, 48px);
+  --header-height: 74px;
 }
 
 * {
@@ -19,7 +20,7 @@
 
 html {
   scroll-behavior: smooth;
-  scroll-padding-top: 74px;
+  scroll-padding-top: var(--header-height);
   scroll-snap-type: y proximity;
 }
 
@@ -51,7 +52,7 @@ img {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  height: 74px;
+  height: var(--header-height);
   padding: 0 max(var(--gutter), calc((100vw - var(--max)) / 2));
   color: var(--ink);
   background: rgba(245, 241, 236, 0.92);
@@ -132,7 +133,9 @@ img {
 
 .hero {
   position: relative;
-  min-height: 100svh;
+  min-height: calc(100vh + var(--header-height));
+  min-height: calc(100svh + var(--header-height));
+  min-height: calc(100dvh + var(--header-height));
   display: grid;
   align-items: center;
   overflow: hidden;
@@ -370,7 +373,8 @@ img {
   max-width: none;
   margin: 0 auto;
   padding: 46px 0;
-  min-height: calc(100svh - 74px);
+  min-height: calc(100svh - var(--header-height));
+  min-height: calc(100dvh - var(--header-height));
 }
 
 .overview {
@@ -382,7 +386,8 @@ img {
   align-content: center;
   padding-top: 0;
   padding-bottom: 0;
-  height: calc(100svh - 74px);
+  height: calc(100svh - var(--header-height));
+  height: calc(100dvh - var(--header-height));
   isolation: isolate;
   overflow: visible;
   scroll-snap-align: start;
@@ -765,7 +770,8 @@ img {
 }
 
 .process {
-  height: calc(100svh - 74px);
+  height: calc(100svh - var(--header-height));
+  height: calc(100dvh - var(--header-height));
   display: grid;
   align-content: center;
   gap: clamp(48px, 6vw, 80px);
@@ -1026,7 +1032,8 @@ img {
 
 .pulse {
   position: relative;
-  height: calc(100svh - 74px);
+  height: calc(100svh - var(--header-height));
+  height: calc(100dvh - var(--header-height));
   margin: 0;
   padding: 0;
   display: flex;
@@ -1338,7 +1345,8 @@ img {
 .training {
   display: grid;
   align-content: center;
-  height: calc(100svh - 74px);
+  height: calc(100svh - var(--header-height));
+  height: calc(100dvh - var(--header-height));
   overflow: hidden;
   padding-top: 0;
   padding-bottom: 0;
@@ -1803,8 +1811,12 @@ img {
 }
 
 @media (max-width: 900px) {
+  :root {
+    --header-height: 66px;
+  }
+
   .site-header {
-    height: 66px;
+    height: var(--header-height);
   }
 
   .nav {
@@ -1858,7 +1870,8 @@ img {
   }
 
   .hero {
-    min-height: 690px;
+    min-height: calc(100svh + var(--header-height));
+    min-height: calc(100dvh + var(--header-height));
   }
 
   .hero::after {
